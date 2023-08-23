@@ -96,5 +96,12 @@ public class Connect {
         }
     }
 
+    public static void displayBewertungenOrderByBewertung() {
+        //1. Connection aufbauen
+        //2. Resultset erzeugen
+        //3. Ausgabe der Bewertungen inkl. Schlagwort aus der Tabelle Urlaube mit printf
+    }
+
+
 
 }
