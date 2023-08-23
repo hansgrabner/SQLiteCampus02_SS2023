@@ -97,6 +97,7 @@ public class Connect {
     }
 
     public static void AufgabeNachmittagMittwoch() {
+        //
         //1. Aufgabe - neue Tabelle in SQLite Studio
      //Jede Bewertung soll kommentiert werden können
         //1	  1	7	fasst perfekt - Bewertungstabelle
