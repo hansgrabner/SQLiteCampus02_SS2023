@@ -110,6 +110,60 @@ public class Connect {
         //neue Methode - Zeige alle Kommentare pro Bewertung JOIN Bewertungen und KommentareZuBewertungen
 
         //11:45 12:30 --- heute um 13:00 Uhr Auflösung
+        /*CREATE TABLE KommentareZuBewertung
+(
+    KommentarId INTEGER PRIMARY KEY AUTOINCREMENT,
+    Kommentar varchar(50),
+    BewertungsId int,
+
+    CONSTRAINT fk_kommentare FOREIGN KEY (
+        BewertungsId
+    )
+    REFERENCES Bewertungen (BewertungsId)
+
+
+)*/
+
+        Connection conn = null;
+        try {
+            // db parameters
+            String url = "jdbc:sqlite:C:/LVs/DBP2023/Campus02JDBC.db";
+            //Wie ist ein connection-String aufgebaut - DriverName:Filename
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
+
+            System.out.println("Connection to SQLite has been established.");
+
+            Statement stmt = conn.createStatement();
+
+            String query = "SELECT b.Kommentar AS KommentarBewertung, b.Punkte, k.Kommentar, k.Person\n" +
+                    " FROM Bewertungen b JOIN KommentareZuBewertung k\n" +
+                    " ON b.BewertungsID = k.BewertungsID\n" +
+                    " ORDER BY Punkte";
+            ResultSet rs = stmt.executeQuery(query);
+
+
+            while (rs.next()) {
+                System.out.printf("Kommentar: %s Punkte: %d Kommentar %s Person %s%n",
+                        rs.getString("KommentarBewertung"),
+                        rs.getInt("Punkte"),
+                        rs.getString("Kommentar"),
+                        rs.getString("Person")
+                );
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+
 
     }
 
@@ -132,7 +186,7 @@ public class Connect {
             Statement stmt = conn.createStatement();
 
             String query = "SELECT u.Schlagwort, b.Punkte, b.Kommentar\n" +
-                    "FROM Urlaube u JOIN Bewertungen be\n" +
+                    "FROM Urlaube u JOIN Bewertungen b\n" +
                     "ON u.UrlaubsID = b.UrlaubsId"+
                     " ORDER BY Punkte DESC";
 

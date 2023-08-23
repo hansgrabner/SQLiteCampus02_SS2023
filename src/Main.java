@@ -13,6 +13,9 @@ public class Main {
 
         int erg = 23 + i;
 
+        System.out.println("Aufgabe Mittwoch");
+        Connect.AufgabeNachmittagMittwoch();
+
 Connect.displayBewertungenOrderByBewertung();
 
 
