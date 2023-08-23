@@ -6,6 +6,12 @@ public class Main {
         // IntelliJ IDEA suggests fixing it.
         System.out.printf("Hello and welcome to JDBC!");
 
+        int i = 12;
+
+        int erg = 23 + i;
+
+
+        //Connect.connect();
         Connect.readKategorien();
 
     }
