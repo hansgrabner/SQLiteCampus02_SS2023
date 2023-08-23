@@ -12,7 +12,8 @@ public class Main {
 
 
         //Connect.connect();
-        Connect.readKategorien();
+      //  Connect.readKategorien();
+        Connect.printMetadata();
 
     }
 }

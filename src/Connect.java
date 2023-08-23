@@ -72,12 +72,12 @@ public class Connect {
             Statement stmt = conn.createStatement();
 
             String query = "SELECT UrlaubsID, Schlagwort, UrlaubskategorieID FROM Urlaube";
-            ResultSet rs = stmt.executeQuery( query );
+            ResultSet rs = stmt.executeQuery(query);
 
             //rs ist ein Zeiger auf eine virtuelle Tabelle,
             // zeigt nach dem Öffnen auf den Datensatz - 1
 
-            while ( rs.next() ) {
+            while (rs.next()) {
                 System.out.printf("Schlagwort: %s die UrlaubsID ist: %d %n",
                         rs.getString("Schlagwort"),
                         rs.getInt("UrlaubsID"));
@@ -103,5 +103,38 @@ public class Connect {
     }
 
 
+    public static void printMetadata() {
+        Connection conn = null;
+        try {
+            // db parameters
+            String url = "jdbc:sqlite:C:/LVs/DBP2023/Campus02JDBC.db";
+            //Wie ist ein connection-String aufgebaut - DriverName:Filename
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
 
+
+            DatabaseMetaData metaData = conn.getMetaData();
+            ResultSet tables = metaData.getTables(null, null, null, new String[]{"TABLE"});
+
+            while (tables.next()) {
+                String tableName = tables.getString("TABLE_NAME");
+                System.out.println("Tabelle gefunden: " + tableName);
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
 }
+
+
+
