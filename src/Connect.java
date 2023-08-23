@@ -98,7 +98,7 @@ public class Connect {
 
     public static void AufgabeNachmittagMittwoch() {
         //
-        //1. Aufgabe - neue Tabelle in SQLite Studio
+        //1. Aufgabe - neue Tabelle in SQLite Studio - beispiele Hinzufügen über SQLite
      //Jede Bewertung soll kommentiert werden können
         //1	  1	7	fasst perfekt - Bewertungstabelle
 
@@ -107,7 +107,9 @@ public class Connect {
                 //2    1    bin ähnlicher Meinung XY
                 //3    1    bin völlig anderer Meinung ABC
 
-        //neue Methode - Zeige alle Kommentare pro Bewertung
+        //neue Methode - Zeige alle Kommentare pro Bewertung JOIN Bewertungen und KommentareZuBewertungen
+
+        //11:45 12:30 --- heute um 13:00 Uhr Auflösung
 
     }
 
