@@ -31,6 +31,36 @@ public class JDBCHelper {
         }
     }
 
+
+
+    public void printAllBewertungen() {
+        try {
+            ResultSet rs = executeQuery("SELECT BewertungsId, Punkte, Kommentar FROM Bewertungen");
+            while (rs.next()) {
+                System.out.printf("ID %d Punkte %d Kommentar %s %n",
+                        rs.getInt("BewertungsID"),
+                        rs.getInt("Punkte"),
+                        rs.getString("Kommentar")
+                );
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void printKategorien() {
+        try {
+            ResultSet rs = executeQuery("SELECT Kategorie FROM Urlaubskategorien");
+            while (rs.next()) {
+                System.out.printf("Kategorie %s %n",
+                        rs.getString("Kategorie")
+                );
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void printTableMetadata() {
         try {
             DatabaseMetaData metaData = connection.getMetaData();
@@ -44,4 +74,6 @@ public class JDBCHelper {
             e.printStackTrace();
         }
     }
+
+
 }

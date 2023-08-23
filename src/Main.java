@@ -27,18 +27,24 @@ Connect.displayBewertungenOrderByBewertung();
 
         System.out.printf("%nmit Helper %n");
 
-        try {
+        //try {
 
             JDBCHelper helper = new JDBCHelper(url);
+            System.out.printf("%n alle Bewertugen mit Helper %n");
+            helper.printAllBewertungen();
+        System.out.printf("%n alle Kategorien mit Helper %n");
+            helper.printKategorien();
+
+            /*
             ResultSet rs = helper.executeQuery("SELECT UrlaubsID, Schlagwort, UrlaubskategorieID FROM Urlaube");
             while (rs.next()) {
                 System.out.printf("%s %n", rs.getString("Schlagwort"));
-            }
+            }*/
+
             helper.closeConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        //} catch (SQLException e) {
+          //  throw new RuntimeException(e);
         }
 
 
     }
-}
