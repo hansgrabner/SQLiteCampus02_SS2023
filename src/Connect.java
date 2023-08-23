@@ -96,7 +96,21 @@ public class Connect {
         }
     }
 
-    public static void displayBewertungenOrderByBewertung() {
+    public static void AufgabeNachmittagMittwoch() {
+        //1. Aufgabe - neue Tabelle in SQLite Studio
+     //Jede Bewertung soll kommentiert werden können
+        //1	  1	7	fasst perfekt - Bewertungstabelle
+
+        //KommentareZuBewerungen
+                //1    1    ich stimme dir zu    JG
+                //2    1    bin ähnlicher Meinung XY
+                //3    1    bin völlig anderer Meinung ABC
+
+        //neue Methode - Zeige alle Kommentare pro Bewertung
+
+    }
+
+        public static void displayBewertungenOrderByBewertung() {
         //1. Connection aufbauen
         //2. Resultset erzeugen
         //3. Ausgabe der Bewertungen inkl. Schlagwort aus der Tabelle Urlaube mit printf
@@ -115,7 +129,7 @@ public class Connect {
             Statement stmt = conn.createStatement();
 
             String query = "SELECT u.Schlagwort, b.Punkte, b.Kommentar\n" +
-                    "FROM Urlaube u JOIN Bewertungen b\n" +
+                    "FROM Urlaube u JOIN Bewertungen be\n" +
                     "ON u.UrlaubsID = b.UrlaubsId"+
                     " ORDER BY Punkte DESC";
 
