@@ -103,6 +103,7 @@ public class Connect {
 
         Connection conn = null;
         try {
+
             // db parameters
             String url = "jdbc:sqlite:C:/LVs/DBP2023/Campus02JDBC.db";
             //Wie ist ein connection-String aufgebaut - DriverName:Filename
