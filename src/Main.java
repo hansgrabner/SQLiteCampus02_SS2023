@@ -6,7 +6,7 @@ public class Main {
         // IntelliJ IDEA suggests fixing it.
         System.out.printf("Hello and welcome to JDBC!");
 
-        Connect.connect();
+        Connect.readKategorien();
 
     }
 }
