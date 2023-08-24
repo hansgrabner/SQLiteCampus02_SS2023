@@ -179,5 +179,31 @@ public class JDBCHelper {
         }
     }
 
+    public void insertKategorie(String kategorie){
+        String insertString="INSERT INTO Urlaubskategorien (\n" +
+                "                                  Kategorie\n" +
+                "                              )\n" +
+                "                              VALUES (\n" +
+                "                                  ?\n" +
+                "                              );";
+
+        try
+        {
+            PreparedStatement pStmt = connection.prepareStatement(insertString);
+            pStmt.setString(1,kategorie);
+
+            int affectedRows = pStmt.executeUpdate();
+
+            System.out.printf("Es waren %d Datensätze betroffen",affectedRows);
+
+
+        }
+        catch(SQLException ex){
+
+        }
+
+
+    }
+
 
 }
