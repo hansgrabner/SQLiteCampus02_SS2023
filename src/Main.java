@@ -96,7 +96,9 @@ Connect.displayBewertungenOrderByBewertung();
 
 
 
-        Bewertung bSuchen = helper.getBewertungById(2);
+        Bewertung bSuchen = helper.getBewertungById(9);
+
+        System.out.println("\n sucherergbnis von 10 \n" + bSuchen);
 
         ArrayList<Bewertung> alleBewertungen = helper.getAlleBewertungen();
 

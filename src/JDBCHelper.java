@@ -330,7 +330,16 @@ public class JDBCHelper {
 
                 b.setUrlaubsId(rs.getInt("UrlaubsId"));
                 b.setPunkte(rs.getInt("Punkte"));
-                b.setKommentar(rs.getString("Kommentar"));
+                String kommentar = rs.getString("Kommentar");
+
+                //falls der letzte Lesevorgang also rs.getString("Kommentar") wird true zurück gegeben
+
+                if (rs.wasNull())
+                    kommentar="Das Kommentar wurde noch nicht vergeben";
+
+                b.setKommentar(kommentar);
+
+
             } else {
                 b.setKommentar(rs.getString("wurde nicht gefunden"));
             }
