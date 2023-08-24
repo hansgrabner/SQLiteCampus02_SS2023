@@ -193,7 +193,24 @@ public class JDBCHelper {
            if (affectedRows==0)
               //nicht gefunden
                     */
+        try {
+            String updateText = "UPDATE Urlaubskategorien SET Kategorie=? where ID = ?";
+            PreparedStatement pStmt = connection.prepareStatement(updateText);
+            pStmt.setString(1,geaenderteKategorie);
+            pStmt.setInt(2, id);
 
+            int affectedRows = pStmt.executeUpdate();
+
+            if (affectedRows==1){
+                System.out.println("Kategorie wurde erfolgreich geändert");
+            } else {
+                System.out.printf("die Kategorie mit der ID %d wurde nicht gefunden ", id);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void insertKategorie(String kategorie){
@@ -211,7 +228,7 @@ public class JDBCHelper {
 
             int affectedRows = pStmt.executeUpdate();
 
-             */
+
 
             System.out.printf("Es waren %d Datensätze betroffen",affectedRows);
 

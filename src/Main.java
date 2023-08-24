@@ -51,7 +51,10 @@ Connect.displayBewertungenOrderByBewertung();
         helper.printAllBewertungenMinPunkteHoeherAlsMitPreparedStatement(6);
 
         System.out.printf("%nInsert neue Kategorie %n");
-        helper.insertKategorie("Safari");
+        //helper.insertKategorie("Safari");
+
+        System.out.printf("%nUpdate Kategorie%n");
+        helper.updateKategorie(9, "Safari");
 
             /*
             ResultSet rs = helper.executeQuery("SELECT UrlaubsID, Schlagwort, UrlaubskategorieID FROM Urlaube");
