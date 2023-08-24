@@ -1,7 +1,9 @@
+import models.Bewertung;
 import models.Urlaubskategorien;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -33,6 +35,8 @@ Connect.displayBewertungenOrderByBewertung();
         //try {
 
             JDBCHelper helper = new JDBCHelper(url);
+
+            /*
             System.out.printf("%n alle Bewertugen mit Helper %n");
             helper.printAllBewertungen();
 
@@ -63,6 +67,8 @@ Connect.displayBewertungenOrderByBewertung();
         Urlaubskategorien kNeu =new Urlaubskategorien();
         kNeu.setKategorie("Bildung");
         helper.insertKategorie(kNeu);
+        */
+
 
         /*
         //1. Aufgabe - Klasse Bewertung mit Properties erstellen, BewertungsId, UrlaubsId, Punkte, Kommentar
@@ -76,9 +82,20 @@ Connect.displayBewertungenOrderByBewertung();
         List<Bewertung> alleBewertungen = helper.getBewertungen(); --> liefert eine Liste von Bewertungen
         */
 
+        //Auflösung um 12:40 Uhr - Prüfungsgespräch oder Prüfung
 
 
 
+        //UrlaubsId wird von der DB über AUTOINCREMENT befüllt
+        //Bewertung b1 =new Bewertung(-1,1,9,"war alles sehr angenehm");
+        //helper.insertBewertung(b1);
+
+        Bewertung bSuchen = helper.getBewertungById(2);
+
+        ArrayList<Bewertung> alleBewertungen = helper.getAlleBewertungen();
+
+        System.out.println("\nAlle Bewertungen\n");
+        System.out.println(alleBewertungen);
 
 
 

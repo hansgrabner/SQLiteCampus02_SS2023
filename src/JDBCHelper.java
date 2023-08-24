@@ -1,6 +1,8 @@
+import models.Bewertung;
 import models.Urlaubskategorien;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class JDBCHelper {
     private Connection connection;
@@ -36,12 +38,13 @@ public class JDBCHelper {
     public PreparedStatement prepareStatement(String query) throws SQLException {
         return connection.prepareStatement(query);
     }
+
     public void displayUrlaubMitID(String query, int id) {
         try {
-            PreparedStatement  statement = prepareStatement(query);
-            statement.setInt(1,id);
+            PreparedStatement statement = prepareStatement(query);
+            statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 System.out.printf("Schlagwort %s", rs.getString("Schlagwort"));
             }
 
@@ -50,7 +53,6 @@ public class JDBCHelper {
 
         }
     }
-
 
 
     public void printAllBewertungen() {
@@ -63,7 +65,7 @@ public class JDBCHelper {
                         rs.getString("Kommentar")
                 );
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -73,7 +75,7 @@ public class JDBCHelper {
         //es sollen nur Bewertungen ausgegeben werden,
         //bei denen die Punkteanzahl größer oder gleich der Variable "mindestPunkteanzahl" ist
 
-        String dynamicQuery="SELECT BewertungsId,\n" +
+        String dynamicQuery = "SELECT BewertungsId,\n" +
                 "       UrlaubsId,\n" +
                 "       Punkte,\n" +
                 "       Kommentar\n" +
@@ -95,7 +97,7 @@ public class JDBCHelper {
                         rs.getString("Kommentar")
                 );
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -106,7 +108,7 @@ public class JDBCHelper {
         //es sollen nur Bewertungen ausgegeben werden,
         //bei denen die Punkteanzahl größer oder gleich der Variable "mindestPunkteanzahl" ist
 
-        String dynamicQuery="SELECT BewertungsId,\n" +
+        String dynamicQuery = "SELECT BewertungsId,\n" +
                 "       UrlaubsId,\n" +
                 "       Punkte,\n" +
                 "       Kommentar\n" +
@@ -114,8 +116,8 @@ public class JDBCHelper {
                 "  WHERE Punkte >= ?";
         try {
 
-        PreparedStatement pStmt = connection.prepareStatement(dynamicQuery);
-        pStmt.setInt(1,mindestPunkteanzahl); //alle Parameter müssen vor der Ausführung bestimmt werden
+            PreparedStatement pStmt = connection.prepareStatement(dynamicQuery);
+            pStmt.setInt(1, mindestPunkteanzahl); //alle Parameter müssen vor der Ausführung bestimmt werden
 
             //pStmt.setString, pStmt.setDouble
 
@@ -128,13 +130,13 @@ public class JDBCHelper {
                         rs.getString("Kommentar")
                 );
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    public void printBewertungskommentare(String person){
+    public void printBewertungskommentare(String person) {
         //PreparedStatement     FROM KommentareZuBewertung WHERE PERSON ='Johann'
         //Auflösung um 09:45 - bitte auch Pause einplanen
     }
@@ -149,7 +151,7 @@ public class JDBCHelper {
                         rs.getString("Kommentar")
                 );
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -162,7 +164,7 @@ public class JDBCHelper {
                         rs.getString("Kategorie")
                 );
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -170,7 +172,7 @@ public class JDBCHelper {
     public void printTableMetadata() {
         try {
             DatabaseMetaData metaData = connection.getMetaData();
-            ResultSet tables = metaData.getTables(null, null, null, new String[] {"TABLE"});
+            ResultSet tables = metaData.getTables(null, null, null, new String[]{"TABLE"});
 
             while (tables.next()) {
                 String tableName = tables.getString("TABLE_NAME");
@@ -198,12 +200,12 @@ public class JDBCHelper {
         try {
             String updateText = "UPDATE Urlaubskategorien SET Kategorie=? where ID = ?";
             PreparedStatement pStmt = connection.prepareStatement(updateText);
-            pStmt.setString(1,geaenderteKategorie);
+            pStmt.setString(1, geaenderteKategorie);
             pStmt.setInt(2, id);
 
             int affectedRows = pStmt.executeUpdate();
 
-            if (affectedRows==1){
+            if (affectedRows == 1) {
                 System.out.println("Kategorie wurde erfolgreich geändert");
             } else {
                 System.out.printf("die Kategorie mit der ID %d wurde nicht gefunden ", id);
@@ -215,56 +217,50 @@ public class JDBCHelper {
         }
     }
 
-    public void insertKategorie(String kategorie){
-        String insertString="INSERT INTO Urlaubskategorien (\n" +
+    public void insertKategorie(String kategorie) {
+        String insertString = "INSERT INTO Urlaubskategorien (\n" +
                 "                                  Kategorie\n" +
                 "                              )\n" +
                 "                              VALUES (\n" +
                 "                                  ?\n" +
                 "                              );";
 
-        try
-        {
+        try {
             PreparedStatement pStmt = connection.prepareStatement(insertString);
-            pStmt.setString(1,kategorie);
+            pStmt.setString(1, kategorie);
 
             int affectedRows = pStmt.executeUpdate();
 
 
+            System.out.printf("Es waren %d Datensätze betroffen", affectedRows);
 
-            System.out.printf("Es waren %d Datensätze betroffen",affectedRows);
 
-
-        }
-        catch(SQLException ex){
+        } catch (SQLException ex) {
 
         }
 
 
     }
 
-    public void insertKategorie(Urlaubskategorien kategorie){
-        String insertString="INSERT INTO Urlaubskategorien (\n" +
+    public void insertKategorie(Urlaubskategorien kategorie) {
+        String insertString = "INSERT INTO Urlaubskategorien (\n" +
                 "                                  Kategorie\n" +
                 "                              )\n" +
                 "                              VALUES (\n" +
                 "                                  ?\n" +
                 "                              );";
 
-        try
-        {
+        try {
             PreparedStatement pStmt = connection.prepareStatement(insertString);
             pStmt.setString(1, kategorie.getKategorie());
 
             int affectedRows = pStmt.executeUpdate();
 
 
+            System.out.printf("Es waren %d Datensätze betroffen", affectedRows);
 
-            System.out.printf("Es waren %d Datensätze betroffen",affectedRows);
 
-
-        }
-        catch(SQLException ex){
+        } catch (SQLException ex) {
 
         }
 
@@ -272,4 +268,70 @@ public class JDBCHelper {
     }
 
 
+    public void insertBewertung(Bewertung b1) {
+        String insertBewertungSQL = "INSERT INTO Bewertungen (                            \n" +
+                "                            UrlaubsId, Punkte, Kommentar\n" +
+                "                        )\n" +
+                "                        VALUES (                           \n" +
+                "                            ?,?,?\n" +
+                "                        );";
+
+        try {
+            PreparedStatement pInsertBewergung = connection.prepareStatement(insertBewertungSQL);
+            pInsertBewergung.setInt(1, b1.getUrlaubsId());
+            pInsertBewergung.setInt(2, b1.getPunkte());
+            pInsertBewergung.setString(3, b1.getKommentar());
+
+            pInsertBewergung.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+
+
+    }
+
+    public ArrayList<Bewertung> getAlleBewertungen() {
+        ArrayList<Bewertung> alleBewertungen = new ArrayList<Bewertung>();
+
+        try {
+
+            ResultSet rs = executeQuery("SELECT BewertungsID FROM Bewertungen");
+
+            while (rs.next()) {
+                alleBewertungen.add(getBewertungById(rs.getInt("BewertungsID")));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+
+        return  alleBewertungen;
+    }
+
+    public Bewertung getBewertungById(int bewertungsId) {
+        Bewertung b = new Bewertung();
+        String sqlSucheBewertungById = "SELECT BewertungsId, UrlaubsId, Punkte, Kommentar " +
+                " FROM Bewertungen WHERE BewertungsId=?";
+
+        try {
+            PreparedStatement pSucheByID = connection.prepareStatement(sqlSucheBewertungById);
+            pSucheByID.setInt(1, bewertungsId);
+
+            ResultSet rs = pSucheByID.executeQuery();
+            b.setBewertungsId(bewertungsId);
+            if (rs.next()) {//falls Bewertung mit dieser ID exisitert lesen
+
+                b.setUrlaubsId(rs.getInt("UrlaubsId"));
+                b.setPunkte(rs.getInt("Punkte"));
+                b.setKommentar(rs.getString("Kommentar"));
+            } else {
+                b.setKommentar(rs.getString("wurde nicht gefunden"));
+            }
+            return b;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+        return b;
+
+    }
 }
