@@ -47,6 +47,9 @@ Connect.displayBewertungenOrderByBewertung();
         helper.printAllBewertungenMinPunkteHoeherAls(6);
 
 
+        System.out.printf("%n Bewertungen mit Parametern und PreparedStatement %n");
+        helper.printAllBewertungenMinPunkteHoeherAlsMitPreparedStatement(6);
+
             /*
             ResultSet rs = helper.executeQuery("SELECT UrlaubsID, Schlagwort, UrlaubskategorieID FROM Urlaube");
             while (rs.next()) {

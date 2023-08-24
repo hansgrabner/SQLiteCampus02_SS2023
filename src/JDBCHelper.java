@@ -78,10 +78,47 @@ public class JDBCHelper {
                 "  FROM Bewertungen\n" +
                 "  WHERE Punkte >= " + mindestPunkteanzahl;
 
+        String likeExpression = " WHERE SCHLAGWORT LIKE '%" + "suchTExt" + "%'";
+
+        //Vorsicht SQL Injection!!!
+
         System.out.println(dynamicQuery);
 
         try {
             ResultSet rs = executeQuery(dynamicQuery);
+            while (rs.next()) {
+                System.out.printf("ID %d Punkte %d Kommentar %s %n",
+                        rs.getInt("BewertungsID"),
+                        rs.getInt("Punkte"),
+                        rs.getString("Kommentar")
+                );
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void printAllBewertungenMinPunkteHoeherAlsMitPreparedStatement(int mindestPunkteanzahl) {
+
+        //es sollen nur Bewertungen ausgegeben werden,
+        //bei denen die Punkteanzahl größer oder gleich der Variable "mindestPunkteanzahl" ist
+
+        String dynamicQuery="SELECT BewertungsId,\n" +
+                "       UrlaubsId,\n" +
+                "       Punkte,\n" +
+                "       Kommentar\n" +
+                "  FROM Bewertungen\n" +
+                "  WHERE Punkte >= ?";
+        try {
+
+        PreparedStatement pStmt = connection.prepareStatement(dynamicQuery);
+        pStmt.setInt(1,mindestPunkteanzahl); //alle Parameter müssen vor der Ausführung bestimmt werden
+
+            //pStmt.setString, pStmt.setDouble
+
+
+            ResultSet rs = pStmt.executeQuery();
             while (rs.next()) {
                 System.out.printf("ID %d Punkte %d Kommentar %s %n",
                         rs.getInt("BewertungsID"),
