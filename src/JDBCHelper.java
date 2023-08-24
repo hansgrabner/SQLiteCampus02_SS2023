@@ -179,6 +179,23 @@ public class JDBCHelper {
         }
     }
 
+    public void updateKategorie(int id, String geaenderteKategorie) {
+        //UPDATE Urlaubskategorien SET Kategorie='neu geändert hello' where ID = 2
+
+        //Wenn keine Zeile geändert wurde soll eine entsprechende Meldung ausgegeben werden
+        //Kategorie wurde geändert
+        //oder Kategorie mit der Id xyz wurde nicht gefunden
+
+        /*
+            if (affectedRows==1)
+                //geändert
+
+           if (affectedRows==0)
+              //nicht gefunden
+                    */
+
+    }
+
     public void insertKategorie(String kategorie){
         String insertString="INSERT INTO Urlaubskategorien (\n" +
                 "                                  Kategorie\n" +
@@ -193,6 +210,8 @@ public class JDBCHelper {
             pStmt.setString(1,kategorie);
 
             int affectedRows = pStmt.executeUpdate();
+
+             */
 
             System.out.printf("Es waren %d Datensätze betroffen",affectedRows);
 
