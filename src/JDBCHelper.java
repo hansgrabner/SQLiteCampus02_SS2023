@@ -132,6 +132,10 @@ public class JDBCHelper {
 
     }
 
+    public void printBewertungskommentare(String person){
+        //PreparedStatement     FROM KommentareZuBewertung WHERE PERSON ='Johann'
+        //Auflösung um 09:45 - bitte auch Pause einplanen
+    }
 
     public void printAlleKommentare() {
         try {
