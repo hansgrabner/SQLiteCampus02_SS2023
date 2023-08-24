@@ -296,7 +296,6 @@ public class JDBCHelper {
         try {
 
             ResultSet rs = executeQuery("SELECT BewertungsID FROM Bewertungen");
-
             while (rs.next()) {
                 alleBewertungen.add(getBewertungById(rs.getInt("BewertungsID")));
             }
