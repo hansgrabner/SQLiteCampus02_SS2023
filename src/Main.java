@@ -1,3 +1,5 @@
+import models.Urlaubskategorien;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -55,6 +57,13 @@ Connect.displayBewertungenOrderByBewertung();
 
         System.out.printf("%nUpdate Kategorie%n");
         helper.updateKategorie(9, "Safari");
+
+        System.out.printf("%nInsert neue Kategorie %n");
+        Urlaubskategorien kNeu =new Urlaubskategorien();
+        kNeu.setKategorie("Bildung");
+        helper.insertKategorie(kNeu);
+
+
 
             /*
             ResultSet rs = helper.executeQuery("SELECT UrlaubsID, Schlagwort, UrlaubskategorieID FROM Urlaube");

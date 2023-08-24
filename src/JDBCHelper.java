@@ -1,3 +1,5 @@
+import models.Urlaubskategorien;
+
 import java.sql.*;
 
 public class JDBCHelper {
@@ -225,6 +227,34 @@ public class JDBCHelper {
         {
             PreparedStatement pStmt = connection.prepareStatement(insertString);
             pStmt.setString(1,kategorie);
+
+            int affectedRows = pStmt.executeUpdate();
+
+
+
+            System.out.printf("Es waren %d Datensätze betroffen",affectedRows);
+
+
+        }
+        catch(SQLException ex){
+
+        }
+
+
+    }
+
+    public void insertKategorie(Urlaubskategorien kategorie){
+        String insertString="INSERT INTO Urlaubskategorien (\n" +
+                "                                  Kategorie\n" +
+                "                              )\n" +
+                "                              VALUES (\n" +
+                "                                  ?\n" +
+                "                              );";
+
+        try
+        {
+            PreparedStatement pStmt = connection.prepareStatement(insertString);
+            pStmt.setString(1, kategorie.getKategorie());
 
             int affectedRows = pStmt.executeUpdate();
 
