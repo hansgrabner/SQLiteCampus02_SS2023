@@ -1,5 +1,6 @@
 import models.Bewertung;
 import models.Urlaubskategorien;
+import models.Urlaub;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -313,6 +314,30 @@ public class JDBCHelper {
         }
 
         return  alleBewertungen;
+    }
+
+    public ArrayList<Urlaub> findUrlaubBySchlagwort(String schlagwort) {
+        ArrayList<Urlaub> alleUrlaube = new ArrayList<Urlaub>();
+
+        schlagwort = "%" + schlagwort + "%";
+        try {
+
+            PreparedStatement pSuche = connection.prepareStatement("SELECT * FROM Urlaube WHERE Schlagwort like ?");
+            pSuche.setString(1,schlagwort);
+
+            ResultSet rs =pSuche.executeQuery();
+
+            while (rs.next()) {
+                Urlaub u =new Urlaub();
+                u.setUrlaubsId(rs.getInt("UrlaubsID"));
+                u.setSchlagwort(rs.getString("Schlagwort"));
+                alleUrlaube.add(u);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+
+        return  alleUrlaube;
     }
 
     public Bewertung getBewertungById(int bewertungsId) {

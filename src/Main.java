@@ -1,4 +1,5 @@
 import models.Bewertung;
+import models.Urlaub;
 import models.Urlaubskategorien;
 
 import java.sql.ResultSet;
@@ -104,6 +105,10 @@ Connect.displayBewertungenOrderByBewertung();
 
         System.out.println("\nAlle Bewertungen\n");
         System.out.println(alleBewertungen);
+
+        System.out.println("\nAlle Urlaube mit Schlagwort\n");
+        ArrayList<Urlaub> suchergebnis =  helper.findUrlaubBySchlagwort("und");
+        System.out.println(suchergebnis);
 
 
         //1. AufgabefindUrlaubBySchlagwort
