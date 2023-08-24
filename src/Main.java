@@ -2,6 +2,7 @@ import models.Urlaubskategorien;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -53,7 +54,7 @@ Connect.displayBewertungenOrderByBewertung();
         helper.printAllBewertungenMinPunkteHoeherAlsMitPreparedStatement(6);
 
         System.out.printf("%nInsert neue Kategorie %n");
-        //helper.insertKategorie("Safari");
+        helper.insertKategorie("Safari");
 
         System.out.printf("%nUpdate Kategorie%n");
         helper.updateKategorie(9, "Safari");
@@ -62,6 +63,22 @@ Connect.displayBewertungenOrderByBewertung();
         Urlaubskategorien kNeu =new Urlaubskategorien();
         kNeu.setKategorie("Bildung");
         helper.insertKategorie(kNeu);
+
+        /*
+        //1. Aufgabe - Klasse Bewertung mit Properties erstellen, BewertungsId, UrlaubsId, Punkte, Kommentar
+        Bewertung bNeu=new Bewertung();
+        bNeu.setUrlaubsId(1);
+        bNeu.setPunkte(12);
+        bNeu.setKommentar('ziemlich gut');
+        //2. eine Methode im JDBC-Helper um ein Objekt vom Typ Bewertung hinzufügen zu können
+        helper.insertBewertung(bNeu);
+        //3. Aufgabe
+        List<Bewertung> alleBewertungen = helper.getBewertungen(); --> liefert eine Liste von Bewertungen
+        */
+
+
+
+
 
 
 
