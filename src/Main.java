@@ -106,12 +106,16 @@ Connect.displayBewertungenOrderByBewertung();
         System.out.println(alleBewertungen);
 
 
+        //1. AufgabefindUrlaubBySchlagwort
         //alles was "irgendwie" fun im Schlagwort enthält soll gefunden werden
         /*
         ArrayList<Urlaub> gefundeneUrlaube = helper.findUrlaubBySchlagwort("fun");
         SELECT * FROM Urlaube
             WHERE Schlagwort LIKE '%arbeit%'*/
 
+        //2. getBewertungMitHoechstenPunkten() -- falls es bewertungen mit gleichen Punkten gibt, irgendeine dieser Bewertungn
+
+        //Auflösung 14:40 Uhr
 
 
             /*
