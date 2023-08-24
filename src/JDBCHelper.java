@@ -31,6 +31,24 @@ public class JDBCHelper {
         }
     }
 
+    public PreparedStatement prepareStatement(String query) throws SQLException {
+        return connection.prepareStatement(query);
+    }
+    public void displayUrlaubMitID(String query, int id) {
+        try {
+            PreparedStatement  statement = prepareStatement(query);
+            statement.setInt(1,id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                System.out.printf("Schlagwort %s", rs.getString("Schlagwort"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+
 
 
     public void printAllBewertungen() {
@@ -48,14 +66,43 @@ public class JDBCHelper {
         }
     }
 
-    public void printAlleKommentare() {
+    public void printAllBewertungenMinPunkteHoeherAls(int mindestPunkteanzahl) {
+
+        //es sollen nur Bewertungen ausgegeben werden,
+        //bei denen die Punkteanzahl größer oder gleich der Variable "mindestPunkteanzahl" ist
+
+        String dynamicQuery="SELECT BewertungsId,\n" +
+                "       UrlaubsId,\n" +
+                "       Punkte,\n" +
+                "       Kommentar\n" +
+                "  FROM Bewertungen\n" +
+                "  WHERE Punkte >= " + mindestPunkteanzahl;
+
+        System.out.println(dynamicQuery);
+
         try {
-            //alle Kommentare aus der Tabelle KommentareZuBewertungen sollen ausgegeben werden
-            ResultSet rs = executeQuery("SELECT BewertungsId, Punkte, Kommentar FROM Bewertungen");
+            ResultSet rs = executeQuery(dynamicQuery);
             while (rs.next()) {
                 System.out.printf("ID %d Punkte %d Kommentar %s %n",
                         rs.getInt("BewertungsID"),
                         rs.getInt("Punkte"),
+                        rs.getString("Kommentar")
+                );
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    public void printAlleKommentare() {
+        try {
+            //alle Kommentare aus der Tabelle KommentareZuBewertungen sollen ausgegeben werden
+            ResultSet rs = executeQuery("SELECT * FROM KommentareZuBewertung");
+            while (rs.next()) {
+                System.out.printf("IKommentar %s %n",
+
                         rs.getString("Kommentar")
                 );
             }

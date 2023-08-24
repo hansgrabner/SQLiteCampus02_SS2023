@@ -32,8 +32,20 @@ Connect.displayBewertungenOrderByBewertung();
             JDBCHelper helper = new JDBCHelper(url);
             System.out.printf("%n alle Bewertugen mit Helper %n");
             helper.printAllBewertungen();
+
         System.out.printf("%n alle Kategorien mit Helper %n");
             helper.printKategorien();
+
+
+        System.out.printf("%n printAlleKommentare mit Helper %n");
+        helper.printAlleKommentare();
+
+        System.out.printf("%n Urlaub mit Nummer  %n");
+        helper.displayUrlaubMitID("SELECT Schlagwort FROM URLAUBE WHERE UrlaubsID=?",1);
+
+        System.out.printf("%n Bewertungen mit Parametern  %n");
+        helper.printAllBewertungenMinPunkteHoeherAls(6);
+
 
             /*
             ResultSet rs = helper.executeQuery("SELECT UrlaubsID, Schlagwort, UrlaubskategorieID FROM Urlaube");
