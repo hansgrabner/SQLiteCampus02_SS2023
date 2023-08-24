@@ -106,6 +106,13 @@ Connect.displayBewertungenOrderByBewertung();
         System.out.println(alleBewertungen);
 
 
+        //alles was "irgendwie" fun im Schlagwort enthält soll gefunden werden
+        /*
+        ArrayList<Urlaub> gefundeneUrlaube = helper.findUrlaubBySchlagwort("fun");
+        SELECT * FROM Urlaube
+            WHERE Schlagwort LIKE '%arbeit%'*/
+
+
 
             /*
             ResultSet rs = helper.executeQuery("SELECT UrlaubsID, Schlagwort, UrlaubskategorieID FROM Urlaube");
