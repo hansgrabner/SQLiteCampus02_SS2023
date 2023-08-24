@@ -87,8 +87,14 @@ Connect.displayBewertungenOrderByBewertung();
 
 
         //UrlaubsId wird von der DB über AUTOINCREMENT befüllt
-        //Bewertung b1 =new Bewertung(-1,1,9,"war alles sehr angenehm");
-        //helper.insertBewertung(b1);
+        Bewertung b1 =new Bewertung(-1,1,4,"so lala");
+        helper.insertBewertung(b1);
+        System.out.printf("Ihre Bewertung mit dem Kommentar %s wurde unter der id %d gespeichert",
+                b1.getKommentar(),
+                b1.getBewertungsId());
+
+
+
 
         Bewertung bSuchen = helper.getBewertungById(2);
 

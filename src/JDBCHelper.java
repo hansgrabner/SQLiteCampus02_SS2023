@@ -283,6 +283,15 @@ public class JDBCHelper {
             pInsertBewergung.setString(3, b1.getKommentar());
 
             pInsertBewergung.executeUpdate();
+
+            ResultSet rsLastAutoincrement = executeQuery("SELECT last_insert_rowid() as rowid");
+            rsLastAutoincrement.next();
+
+            int lastAutoIncrement = rsLastAutoincrement.getInt("rowid");
+
+            b1.setBewertungsId(lastAutoIncrement);
+
+
         } catch (SQLException ex) {
             System.out.println(ex.getStackTrace());
         }
