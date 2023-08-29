@@ -47,9 +47,14 @@ public class Main {
 
 
         //Aufgabe 6
-        myHelper.deleteKunde(3);
+       // myHelper.deleteKunde(3);
 
+        Kunde kZwei = myHelper.getKundeById(3);
+        System.out.printf("Kunde gefunden %s\n",kZwei.toString());
 
+        ArrayList<Kunde> allKunden =myHelper.getAllKunden();
+
+        System.out.println("\nMeine Kunden " + allKunden);
 
         /* Einzelarbeit --- 10:45 --- 11:45, 11:45 bis 12:40 Uhr Mittagspause
         ArrayList<Kunde> allKunden =myHelper.getAllKunden();

@@ -131,6 +131,34 @@ public class eLearning29 {
         return  k;
     }
 
+    public Kunde getKundeById(int id) {
+
+        String selectKundeById="SELECT KundenId, Vorname, Bonuspunkte FROM Kunden WHERE KundenId=?";
+
+        Kunde k=new Kunde();
+        k.setKundenid(id);
+
+        try
+        {
+            PreparedStatement pStmt = connection.prepareStatement(selectKundeById);
+            pStmt.setInt(1,id);
+            ResultSet rs = pStmt.executeQuery();
+
+            if (rs.next()){
+                k.setVorname(rs.getString("Vorname"));
+                k.setBonuspunkte(rs.getDouble("Bonuspunkte"));
+            } else {
+                k.setVorname("Kunde nicht vorhanden");
+            }
+
+
+        }
+        catch (SQLException ex){
+            System.out.printf("%s", ex.getStackTrace());
+        }
+        return  k;
+    }
+
     private int getLastInsertId() throws SQLException {
         String readLastId="SELECT last_insert_rowid() as rowid ";
         Statement stmt = connection.createStatement();
@@ -138,5 +166,21 @@ public class eLearning29 {
         rs.next();
         int id = rs.getInt("rowid");
         return id;
+    }
+
+    public ArrayList<Kunde> getAllKunden() {
+        String selectKunden="SELECT KundenId, Vorname, Bonuspunkte FROM Kunden";
+        ArrayList<Kunde> meineKunden= new ArrayList<Kunde>();
+        try
+        {
+            ResultSet rs = connection.createStatement().executeQuery(selectKunden);
+            while (rs.next()) {
+                meineKunden.add(getKundeById(rs.getInt("KundenId")));
+            }
+        }
+        catch (SQLException ex){
+            System.out.printf("%s", ex.getStackTrace());
+        }
+        return  meineKunden;
     }
 }
