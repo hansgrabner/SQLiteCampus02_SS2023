@@ -264,4 +264,41 @@ public class eLearning29 {
         return  kundeMitMaxBonuspunkten;
 
     }
+
+    public  void transferBonuspunkte(double points, int fromKundenId, int toKundenId) {
+
+        String update1 = "UPDATE Kunden set Bonuspunkte = Bonuspunkte - ? WHERE KundenId = ?";
+        String update2 = "UPDATE Kunden set Bonuspunkte = Bonuspunkte + ? WHERE KundenId = ?";
+
+        try {
+
+            connection.setAutoCommit( false ); //es gibt kein AutoCommit mehr, alle Transatktionen müssen mit commit abgeschlossen werden
+            PreparedStatement pStmt1 = connection.prepareStatement(update1);
+            pStmt1.setDouble(1, points);
+            pStmt1.setInt(2, fromKundenId);
+            pStmt1.executeUpdate(); //Bei Autocomiit wird jede Ausführung sofort "festgeschrieben", kann nich rückgängig gemacht werde
+
+            PreparedStatement pStmt2 = connection.prepareStatement(update2);
+            pStmt2.setDouble(1, points);
+            pStmt2.setInt(2, toKundenId);
+
+            pStmt2.executeUpdate();
+
+            //Wenn alles erfolgreich war, dann dauerhaft "festschreiben"
+            connection.commit(); //Alle Änderungen sind in der DB, es gibt kein zurück
+
+
+        } catch (SQLException ex) {
+            try
+            {
+                connection.rollback(); //alle Änderungen rückgängig machen
+            }
+            catch (SQLException transactionFehler){
+                System.out.printf("%s", ex.getStackTrace());
+            }
+
+
+        }
+        ;
+    }
 }

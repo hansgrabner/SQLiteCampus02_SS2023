@@ -72,6 +72,7 @@ public class Main {
 
         System.out.println("\n Bonuspunkte AVG  " + myHelper.getAVGBonuspunkte());
 
+        myHelper.transferBonuspunkte(200,3,4);
 
 
         /* Einzelarbeit --- 10:45 --- 11:45, 11:45 bis 12:40 Uhr Mittagspause
