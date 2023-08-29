@@ -49,6 +49,9 @@ public class Main {
         //Aufgabe 6
         myHelper.deleteKunde(3);
 
+
+
+        /* Einzelarbeit --- 10:45 --- 11:45, 11:45 bis 12:40 Uhr Mittagspause
         ArrayList<Kunde> allKunden =myHelper.getAllKunden();
 
         //Kunde soll nur einmal ausgegeben werden, egal wie viele Telefonnummern
@@ -57,7 +60,7 @@ public class Main {
          double durchschnittlicheBonuspunkte = myHelper.getDurchschnittsBonuspunkte();
 
          Kunde kundeMitMeistenBonuspunkten = myHelper.getKundeMitMeistenBonuspunkten();
-
+*/
 
 
 
