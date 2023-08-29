@@ -46,7 +46,18 @@ public class Main {
          //System.out.printf("Bei %d Kunden wurde der Bonus erhöht", affectedIncrease);
 
 
+        //Aufgabe 6
         myHelper.deleteKunde(3);
+
+        ArrayList<Kunde> allKunden =myHelper.getAllKunden();
+
+        //Kunde soll nur einmal ausgegeben werden, egal wie viele Telefonnummern
+        ArrayList<Kunde> allKundenMitTelefonnummer =myHelper.getAllKundenMitTelefonnummer();
+
+         double durchschnittlicheBonuspunkte = myHelper.getDurchschnittsBonuspunkte();
+
+         Kunde kundeMitMeistenBonuspunkten = myHelper.getKundeMitMeistenBonuspunkten();
+
 
 
 
