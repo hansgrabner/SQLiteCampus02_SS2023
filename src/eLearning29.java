@@ -301,4 +301,40 @@ public class eLearning29 {
         }
         ;
     }
+
+    public  void deleteTelefonnummernAndKunde(int kundenId) {
+
+        String update1 = "DELETE FROM Telefonnummern WHERE KundenId = ?";
+        String update2 = "DELETE FROMX Kunden WHERE KundenId = ?";
+
+        try {
+
+            connection.setAutoCommit( false ); //es gibt kein AutoCommit mehr, alle Transatktionen müssen mit commit abgeschlossen werden
+
+            PreparedStatement pStmt1 = connection.prepareStatement(update1);
+            pStmt1.setInt(1, kundenId);
+            pStmt1.executeUpdate(); //Bei Autocomiit wird jede Ausführung sofort "festgeschrieben", kann nich rückgängig gemacht werde
+
+            PreparedStatement pStmt2 = connection.prepareStatement(update2);
+            pStmt2.setInt(1, kundenId);
+            pStmt2.executeUpdate();
+
+            //Wenn alles erfolgreich war, dann dauerhaft "festschreiben"
+            connection.commit(); //Alle Änderungen sind in der DB, es gibt kein zurück
+
+
+        } catch (SQLException ex) {
+            System.out.printf("Rollback %s", ex.getStackTrace());
+            try
+            {
+                connection.rollback(); //alle Änderungen rückgängig machen
+            }
+            catch (SQLException transactionFehler){
+                System.out.printf("%s", ex.getStackTrace());
+            }
+
+
+        }
+        ;
+    }
 }

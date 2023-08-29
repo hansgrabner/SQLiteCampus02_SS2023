@@ -74,10 +74,10 @@ public class Main {
 
         myHelper.transferBonuspunkte(200,3,4);
 
-        int kundenIdToDelete = 4;
+        int kundenIdToDelete = 3;
 
         myHelper.deleteTelefonnummernAndKunde(kundenIdToDelete);
-        //zuerst alle Telefonnummern eines Kunden löschen
+        //zuerst alle Telefonnummern eines Kunden löschen  FROM Telefonnnummern WHERE KundenId=? FROM Kunden Where KundenID=?
         //danach den Kunden selbst löschen
         //verwenden sie da zu eine Transaction
 
