@@ -70,6 +70,10 @@ public class Main {
 
         System.out.println("\n Variante 2 " + kundeMitMeistenBonuspunkten);
 
+        System.out.println("\n Bonuspunkte AVG  " + myHelper.getAVGBonuspunkte());
+
+
+
         /* Einzelarbeit --- 10:45 --- 11:45, 11:45 bis 12:40 Uhr Mittagspause
         ArrayList<Kunde> allKunden =myHelper.getAllKunden();
 

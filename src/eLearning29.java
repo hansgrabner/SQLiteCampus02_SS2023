@@ -24,9 +24,6 @@ public class eLearning29 {
         String deleteKunde = "DELETE FROM Kunden where KundenId=?;";
         try {
 
-
-
-
             PreparedStatement pStmt = connection.prepareStatement(deleteKunde);
             pStmt.setInt(1, kundenIdToDelete);
 
@@ -76,6 +73,21 @@ public class eLearning29 {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public double getAVGBonuspunkte(){
+
+
+        double avgBonuspunkte=0;
+        try {
+            ResultSet rs= executeQuery("SELECT AVG(BONUSPUNKTE) AS durchschnitt FROM Kunden");
+            rs.next();
+            avgBonuspunkte=rs.getDouble("durchschnitt");
+        } catch (SQLException e) {
+
+            return 0;
+        }
+        return  avgBonuspunkte;
     }
 
     public void createTableKunden(){
