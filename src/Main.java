@@ -54,7 +54,7 @@ public class Main {
 
         ArrayList<Kunde> allKunden =myHelper.getAllKunden();
 
-        System.out.println("\nMeine Kunden " + allKunden);
+        System.out.println("\nMeine Kunden\n " + allKunden);
 
         /* Einzelarbeit --- 10:45 --- 11:45, 11:45 bis 12:40 Uhr Mittagspause
         ArrayList<Kunde> allKunden =myHelper.getAllKunden();
