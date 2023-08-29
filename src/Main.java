@@ -1,4 +1,5 @@
 import models.Bewertung;
+import models.Kunde;
 import models.Urlaub;
 import models.Urlaubskategorien;
 
@@ -10,7 +11,28 @@ import java.util.List;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    public static void main(String[] args) {
+
+    public static void main(String[] args)
+    {
+        String url = "jdbc:sqlite:C:/LVs/DBP2023/elearningDB29.db";
+
+        eLearning29 myHelper =new eLearning29(url);
+        //myHelper.createTableKunden();
+        //System.out.printf("Tabelle Kunden wurde erzeugt");
+
+        Kunde k =new Kunde();
+        k.setVorname("Victoria");
+        k.setBonuspunkte(900);
+        myHelper.insertKunde(k);
+
+        System.out.printf("Kunden %s wurde hinzugefügt, die neue id ist %d",k.getVorname(), k.getKundenid());
+
+
+
+
+
+    }
+    public static void mainold(String[] args) {
         // Press Alt+Eingabe with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
         System.out.printf("Hello and welcome to JDBC!");
