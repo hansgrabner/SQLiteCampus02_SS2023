@@ -74,6 +74,13 @@ public class Main {
 
         myHelper.transferBonuspunkte(200,3,4);
 
+        int kundenIdToDelete = 4;
+
+        myHelper.deleteTelefonnummernAndKunde(kundenIdToDelete);
+        //zuerst alle Telefonnummern eines Kunden löschen
+        //danach den Kunden selbst löschen
+        //verwenden sie da zu eine Transaction
+
 
         /* Einzelarbeit --- 10:45 --- 11:45, 11:45 bis 12:40 Uhr Mittagspause
         ArrayList<Kunde> allKunden =myHelper.getAllKunden();
