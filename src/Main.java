@@ -56,6 +56,20 @@ public class Main {
 
         System.out.println("\nMeine Kunden\n " + allKunden);
 
+        ArrayList<Kunde> allKundenMitTelefon =myHelper.getAllKundenMitTelefon();
+
+        System.out.println("\nMeine Kunden mit Telefon\n " + allKundenMitTelefon);
+
+        System.out.println("\nKunde mit den meisten Bonuspunkten\n ");
+
+        Kunde kundeMitMeistenBonuspunkten = myHelper.getKundeMitMeistenBonuspunkten();
+
+        System.out.println("\nVariante 1 " + kundeMitMeistenBonuspunkten + " \n");
+
+        kundeMitMeistenBonuspunkten = myHelper.getKundeMitMeistenBonuspunktenVarianteMitOrderBy();
+
+        System.out.println("\n Variante 2 " + kundeMitMeistenBonuspunkten);
+
         /* Einzelarbeit --- 10:45 --- 11:45, 11:45 bis 12:40 Uhr Mittagspause
         ArrayList<Kunde> allKunden =myHelper.getAllKunden();
 

@@ -2,13 +2,24 @@ package models;
 
 public class Kunde {
     private int Kundenid;
+
+    private int AnzahlTelefonnummern;
     private String Vorname;
+
+    public int getAnzahlTelefonnummern() {
+        return AnzahlTelefonnummern;
+    }
+
+    public void setAnzahlTelefonnummern(int anzahlTelefonnummern) {
+        AnzahlTelefonnummern = anzahlTelefonnummern;
+    }
 
     @Override
     public String toString() {
         return "Kunde{" +
                 "Kundenid=" + Kundenid +
                 ", Vorname='" + Vorname + '\'' +
+                ", Anzahl Telefonnummern=" + AnzahlTelefonnummern +
                 ", Bonuspunkte=" + Bonuspunkte +
                 '}';
     }

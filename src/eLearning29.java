@@ -183,4 +183,71 @@ public class eLearning29 {
         }
         return  meineKunden;
     }
+
+    public ArrayList<Kunde> getAllKundenMitTelefon() {
+        String selectKunden="SELECT DISTINCT k.KundenId\n" +
+                "FROM Kunden k JOIN Telefonnummern t\n" +
+                "on k.KundenId=t.kundenId\n";
+
+
+        ArrayList<Kunde> meineKunden= new ArrayList<Kunde>();
+        try
+        {
+            ResultSet rs = connection.createStatement().executeQuery(selectKunden);
+            while (rs.next()) {
+                meineKunden.add(getKundeById(rs.getInt("KundenId")));
+            }
+        }
+        catch (SQLException ex){
+            System.out.printf("%s", ex.getStackTrace());
+        }
+        return  meineKunden;
+    }
+
+    public Kunde getKundeMitMeistenBonuspunkten() {
+        String selectKunden="SELECT KundenId\n" +
+                " FROM Kunden ";
+
+        Kunde kundeMitMaxBonuspunkten =new Kunde();
+        kundeMitMaxBonuspunkten.setBonuspunkte(-1);
+        try
+        {
+            ResultSet rs = connection.createStatement().executeQuery(selectKunden);
+            while (rs.next()) {
+                if (kundeMitMaxBonuspunkten==null){
+                    kundeMitMaxBonuspunkten = getKundeById(rs.getInt("KundenId"));
+                } else {
+                    Kunde kDummy = getKundeById(rs.getInt("KundenId"));
+
+                    if (kDummy.getBonuspunkte()>kundeMitMaxBonuspunkten.getBonuspunkte()){
+                        kundeMitMaxBonuspunkten = kDummy;
+                    }
+                }
+
+            }
+        }
+        catch (SQLException ex){
+            System.out.printf("%s", ex.getStackTrace());
+        }
+        return  kundeMitMaxBonuspunkten;
+
+    }
+
+    public Kunde getKundeMitMeistenBonuspunktenVarianteMitOrderBy() {
+        String selectKunden="SELECT KundenId\n" +
+                " FROM Kunden ORDER BY Bonuspunkte DESC";
+
+        Kunde kundeMitMaxBonuspunkten =new Kunde();
+
+        try {
+            ResultSet rs = connection.createStatement().executeQuery(selectKunden);
+            rs.next();
+            kundeMitMaxBonuspunkten = getKundeById(rs.getInt("KundenId"));
+        }
+        catch (SQLException ex){
+            System.out.printf("%s", ex.getStackTrace());
+        }
+        return  kundeMitMaxBonuspunkten;
+
+    }
 }
