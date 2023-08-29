@@ -18,15 +18,27 @@ public class Main {
 
         eLearning29 myHelper =new eLearning29(url);
         //myHelper.createTableKunden();
+
         //System.out.printf("Tabelle Kunden wurde erzeugt");
 
+        //Aufgabe 4
+        /*
         Kunde k =new Kunde();
         k.setVorname("Victoria");
         k.setBonuspunkte(900);
         myHelper.insertKunde(k);
 
         System.out.printf("Kunden %s wurde hinzugefügt, die neue id ist %d",k.getVorname(), k.getKundenid());
+*/
 
+        //Aufgabe 4b
+        int kundenIdToDelete=1;
+         int affected = myHelper.deleteKunde(kundenIdToDelete);
+         if (affected==1){
+             System.out.println("kunde wurde gelöscht");
+         } else {
+             System.out.printf("kunde mit der Nummer %d wurde nicht gefunden", kundenIdToDelete);
+         }
 
 
 

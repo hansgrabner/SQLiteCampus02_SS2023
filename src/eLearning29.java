@@ -17,6 +17,23 @@ public class eLearning29 {
         }
     }
 
+    public  int deleteKunde(int kundenIdToDelete) {
+
+        String deleteKunde = "DELETE FROM Kunden where KundenId=?;";
+        try {
+            PreparedStatement pStmt = connection.prepareStatement(deleteKunde);
+            pStmt.setInt(1, kundenIdToDelete);
+
+            int rowsAffected = pStmt.executeUpdate();
+
+            return rowsAffected;
+
+        } catch (SQLException ex) {
+            System.out.printf("%s", ex.getStackTrace());
+        }
+        return 0;
+    }
+
     public void closeConnection() {
         try {
             if (connection != null) {
