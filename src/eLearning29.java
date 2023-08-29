@@ -184,6 +184,7 @@ public class eLearning29 {
         return  meineKunden;
     }
 
+
     public ArrayList<Kunde> getAllKundenMitTelefon() {
         String selectKunden="SELECT DISTINCT k.KundenId\n" +
                 "FROM Kunden k JOIN Telefonnummern t\n" +
@@ -193,7 +194,8 @@ public class eLearning29 {
         ArrayList<Kunde> meineKunden= new ArrayList<Kunde>();
         try
         {
-            ResultSet rs = connection.createStatement().executeQuery(selectKunden);
+            //ResultSet rs = connection.createStatement().executeQuery(selectKunden);
+            ResultSet rs = executeQuery(selectKunden); //call helper
             while (rs.next()) {
                 meineKunden.add(getKundeById(rs.getInt("KundenId")));
             }
