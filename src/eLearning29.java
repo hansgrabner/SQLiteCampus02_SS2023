@@ -12,6 +12,8 @@ public class eLearning29 {
     public eLearning29(String url) {
         try {
             connection = DriverManager.getConnection(url);
+
+            connection.createStatement().execute("PRAGMA foreign_keys = ON");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -21,8 +23,30 @@ public class eLearning29 {
 
         String deleteKunde = "DELETE FROM Kunden where KundenId=?;";
         try {
+
+
+
+
             PreparedStatement pStmt = connection.prepareStatement(deleteKunde);
             pStmt.setInt(1, kundenIdToDelete);
+
+            int rowsAffected = pStmt.executeUpdate();
+
+            return rowsAffected;
+
+        } catch (SQLException ex) {
+            System.out.printf("Fehler %s", ex.getStackTrace());
+        }
+        return 0;
+    }
+
+    public  int increaseBonus(double percentIncrease, double maxBonuspunkte) {
+
+        String deleteKunde = "UPDATE Kunden set Bonuspunkte = Bonuspunkte * ? WHERE Bonuspunkte < ?";
+        try {
+            PreparedStatement pStmt = connection.prepareStatement(deleteKunde);
+            pStmt.setDouble(1, percentIncrease);
+            pStmt.setDouble(2, maxBonuspunkte);
 
             int rowsAffected = pStmt.executeUpdate();
 

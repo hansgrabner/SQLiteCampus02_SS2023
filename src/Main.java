@@ -32,6 +32,7 @@ public class Main {
 */
 
         //Aufgabe 4b
+        /*
         int kundenIdToDelete=1;
          int affected = myHelper.deleteKunde(kundenIdToDelete);
          if (affected==1){
@@ -39,6 +40,13 @@ public class Main {
          } else {
              System.out.printf("kunde mit der Nummer %d wurde nicht gefunden", kundenIdToDelete);
          }
+*/
+         //Aufgabe 5
+       // int affectedIncrease = myHelper.increaseBonus(1.2, 1000);
+         //System.out.printf("Bei %d Kunden wurde der Bonus erhöht", affectedIncrease);
+
+
+        myHelper.deleteKunde(3);
 
 
 
