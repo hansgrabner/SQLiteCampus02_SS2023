@@ -76,7 +76,8 @@ public class Main {
 
         int kundenIdToDelete = 3;
 
-        myHelper.deleteTelefonnummernAndKunde(kundenIdToDelete);
+      //  myHelper.deleteTelefonnummernAndKunde(kundenIdToDelete);
+        myHelper.printKundenColumns();
         //zuerst alle Telefonnummern eines Kunden löschen  FROM Telefonnnummern WHERE KundenId=? FROM Kunden Where KundenID=?
         //danach den Kunden selbst löschen
         //verwenden sie da zu eine Transaction

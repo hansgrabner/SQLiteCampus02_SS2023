@@ -321,6 +321,7 @@ public class eLearning29 {
 
             //Wenn alles erfolgreich war, dann dauerhaft "festschreiben"
             connection.commit(); //Alle Änderungen sind in der DB, es gibt kein zurück
+            connection.setAutoCommit(true);
 
 
         } catch (SQLException ex) {
@@ -336,5 +337,32 @@ public class eLearning29 {
 
         }
         ;
+    }
+
+    public void printKundenColumns(){
+
+        try {
+            ResultSet rs = executeQuery( "SELECT * FROM Kunden" );
+            ResultSetMetaData meta = rs.getMetaData();
+
+            int numerics = 0;
+
+            for ( int i = 1; i <= meta.getColumnCount(); i++ )
+            {
+                System.out.printf( "%-20s %-20s%n", meta.getColumnLabel( i ),
+                        meta.getColumnTypeName( i ) );
+
+                if ( meta.isSigned( i ) )
+                    numerics++;
+            }
+
+            System.out.println();
+            System.out.println( "Spalten: " + meta.getColumnCount() +
+                    ", Numerisch: " + numerics );
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
