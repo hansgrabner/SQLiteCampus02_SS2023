@@ -307,7 +307,11 @@ public class JDBCHelper {
 
             ResultSet rs = executeQuery("SELECT BewertungsID FROM Bewertungen");
             while (rs.next()) {
-                alleBewertungen.add(getBewertungById(rs.getInt("BewertungsID")));
+                int id = rs.getInt("Bewertungsid");
+                Bewertung bewertung = getBewertungById(id);
+                alleBewertungen.add(bewertung);
+
+                //alleBewertungen.add(getBewertungById(rs.getInt("BewertungsID")));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getStackTrace());

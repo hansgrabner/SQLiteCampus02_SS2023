@@ -340,7 +340,6 @@ public class eLearning29 {
     }
 
     public void printKundenColumns(){
-
         try {
             ResultSet rs = executeQuery( "SELECT * FROM Kunden" );
             ResultSetMetaData meta = rs.getMetaData();
